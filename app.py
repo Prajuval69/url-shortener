@@ -10,6 +10,12 @@ DB_NAME = os.path.join(os.path.dirname(__file__), "database.db")
 # Hashids setup (salt makes it non-predictable)
 hashids = Hashids(salt="mini-bitly-secret-key", min_length=6)
 
+# ------------------ DB Connection ------------------
+def get_db():
+    conn = sqlite3.connect(DB_NAME)
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def init_db():
     conn = get_db()
     cur = conn.cursor()
@@ -29,13 +35,6 @@ def init_db():
     conn.close()
 
 init_db()  # run on startup
-
-
-# ------------------ DB Connection ------------------
-def get_db():
-    conn = sqlite3.connect(DB_NAME)
-    conn.row_factory = sqlite3.Row
-    return conn
 
 # ------------------ Home Page (UI) ------------------
 @app.route("/", methods=["GET", "POST"])
