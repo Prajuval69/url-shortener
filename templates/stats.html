@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: #ffffff;
+            padding: 25px 35px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 420px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .item {
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>URL Analytics</h2>
+    <div class="item"><span class="label">Short Code:</span> {{ code }}</div>
+    <div class="item"><span class="label">Original URL:</span> <a href="{{ data['long_url'] }}" target="_blank">{{ data['long_url'] }}</a></div>
+    <div class="item"><span class="label">Total Clicks:</span> {{ data['clicks'] }}</div>
+    <div class="item"><span class="label">Created At:</span> {{ data['created_at'] }}</div>
+</div>
+
+</body>
+</html>

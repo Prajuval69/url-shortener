@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Bitly - URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4f46e5;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4338ca;
+        }
+        .result {
+            margin-top: 20px;
+            word-wrap: break-word;
+        }
+        a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Mini Bitly - URL Shortener</h2>
+
+    <form method="POST">
+        <input type="url" name="long_url" placeholder="Enter your long URL here" required>
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    {% if short_url %}
+    <div class="result">
+        <p>Your Short URL:</p>
+        <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
