@@ -10,6 +10,27 @@ DB_NAME = os.path.join(os.path.dirname(__file__), "database.db")
 # Hashids setup (salt makes it non-predictable)
 hashids = Hashids(salt="mini-bitly-secret-key", min_length=6)
 
+def init_db():
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS urls (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        long_url TEXT NOT NULL,
+        short_code TEXT UNIQUE NOT NULL,
+        clicks INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+    cur.execute("""
+    CREATE INDEX IF NOT EXISTS idx_short_code ON urls(short_code)
+    """)
+    conn.commit()
+    conn.close()
+
+init_db()  # run on startup
+
+
 # ------------------ DB Connection ------------------
 def get_db():
     conn = sqlite3.connect(DB_NAME)
